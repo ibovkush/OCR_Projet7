@@ -1,49 +1,70 @@
 <script>
 import Postgm from './wall/postgm.vue';
 import Postgm1 from './wall/postgm.vue';
+import Cardgm from '../components/ui/card/Cardgm.vue';
+import Navbar from '../components/layout/navbar.vue';
     export default {
     name: "profil",
-    components: { Postgm, Postgm1 }
+    components: { Postgm, Postgm1, Cardgm, Navbar },
+
+data() {
+          return {
+            accedAccount: false,
+            sessionUserId: 0,
+            sessionUserRole: 0,
+            userProfile: [],
+          }
+        },
+         created(){
+        
+        this.connectedUser()
+    },
+    beforeMount() {
+        // l'utilisateur ou administrateur
+        if (this.accedAccount === true) {
+            const token = JSON.parse(localStorage.user).token; 
+            let decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET"); 
+            this.sessionUserId = decodedToken.userId; 
+            this.sessionUserRole = decodedToken.isAdmin; 
+            this.getUserProfile();
+        }
+    },
+    //suppression de profil
+    methods:{
+        deleteUser(){
+            if (confirm()){
+                // l'ID verification
+                const userId = this.sessionUserId;
+                const token = JSON.parse(localStorage.user).token;
+
+                fetch(`${this.api}/api/user/:id_user${userId}`,{Authorization: 'Bearer ' + token})
+                method: `DELETE`
+                .then(res => {
+                    if (res.status === 200){
+                        localStorage.removeItem('user');
+                        alert(res.data.message);
+                        this.$router.push('/')
+                    }
+                })    
+                .catch(error => {
+                    console.log(error.response.data.error);
+                    alert(error.response.data.error);
+                    location.reload()
+                })
+                
+            }
+        }
+    }
+        
+
 }
+
+
 </script>
 
 <template>
-    <header class="p-3 headeur-style text-white">
-
-        <div class="container">
-            <div class="">
-                <div class="d-flex flex-wrap align-item-center justify-content-evenly  mg-1">
-                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                            class="bi bi-list" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-                        </svg>
-                    </a>
-                    <a href="/id:user" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                            class="bi bi-person-circle" viewBox="0 0 16 16">
-                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                            <path fill-rule="evenodd"
-                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                        </svg>
-                    </a>
-                    <a href="/login" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                            class="bi bi-power" viewBox="0 0 16 16">
-                            <path d="M7.5 1v7h1V1h-1z" />
-                            <path
-                                d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z" />
-                        </svg>
-                    </a>
-                </div>
-
-
-
-
-            </div>
-        </div>
-    </header>
+    
+    <navbar></navbar>
     <div class="container">
         <div class="main-body">
 
@@ -114,6 +135,10 @@ import Postgm1 from './wall/postgm.vue';
                     </div>
                 </div>
                 <postgm></postgm>
+                <div>
+                <cardgm></cardgm>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -129,7 +154,7 @@ import Postgm1 from './wall/postgm.vue';
 
 
 </template>
-<style scoped>
+<style>
     body {
         margin-top: 20px;
         color: #1a202c;

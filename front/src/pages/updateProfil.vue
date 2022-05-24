@@ -1,43 +1,15 @@
 <script>
+import Navbar from '../components/layout/navbar.vue';
     export default {
         name: "updateProfil",
+        components: { Navbar},
+
+        
     }
 </script>
 <template>
-  <header class="p-3 headeur-style text-white">
 
-    <div class="container">
-      <div class="">
-        <div class="d-flex flex-wrap align-item-center justify-content-center">
-          <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list"
-              viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-            </svg>
-          </a>
-          <a href="/id:user" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-              class="bi bi-person-circle" viewBox="0 0 16 16">
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-              <path fill-rule="evenodd"
-                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-            </svg>
-          </a>
-          <a href="/login" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
-              <path d="M7.5 1v7h1V1h-1z"/>
-              <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
-            </svg>
-          </a>
-        </div>
-
-      
-
-        
-      </div>
-    </div>
-  </header>
+  <navbar></navbar>
     <div class="col-lg-8">
         <div class="card">
             <div class="card-body">
@@ -46,11 +18,16 @@
                    class="rounded-circle" 
                    style="width: 150px;"
                    alt="Avatar" />
+                   
+                    <label for="file-input">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 16 16">
+                       <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                       <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+                      </svg>
+                    </label>
+                    <input id="file-input" tupe="file"/>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 16 16">
-  <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-  <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
-</svg>
+                  
                 <div class="row mb-3">
                     <div class="col-sm-3">
                         <h6 class="mb-0">First Name</h6>

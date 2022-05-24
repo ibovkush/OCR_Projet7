@@ -10,7 +10,7 @@
     <div class="container">
       <div class="">
         <div class="d-flex flex-wrap align-item-center justify-content-evenly">
-          <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <a href="/wall" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list ms-1"
               viewBox="0 0 16 16">
               <path fill-rule="evenodd"

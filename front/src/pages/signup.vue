@@ -8,18 +8,56 @@ export default {
         signupFirstName:'',
         signupEmail: '',
         signupPassword: '',
-        signupErreur: '',  
+        signupErreur: '',
+        signupComplet  
       }
     },
     methods: {
-      isSignup: function(){
-        
+      isSignup: function(){  //function d'inscrioption
+        if(
+          this.SignupFirstName !="" &&
+          this.signupLastName !="" &&
+          this.signupEmail !="" &&
+          this.signupPassword !="" 
+        ) {
+          this.signupErreur = ""
+
+          fetch(`${this.api}/api/user/signup` , {
+            method:'POST',
+            body:JSON.stringify({
+              firstName:this.SignupFirstName,
+              lastName:this.signupLastName,
+              email:this.signupEmail,
+              password:this.signupPassword
+            })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if(data.error) {
+              this.signupErreur = data.error
+            }else {
+                localStorage.setItem(JSON.stringify({
+                  token: `Bearer ${data.token}`,//indiquer que l'utilisateur qui accède aux ressources est unique
+                  userId: data.userId,
+                  isAdmin: data.admin //status d'administrateur, faulse par default
+                }))
+              this.signupComplet = "Bienvenu" + { firstName } + { lastName }
+              this.$router.push('/wall')
+            }
+
+          })
+          .catch(err => this.signupErreur = err)
+       }else 
+       {
+         this.signupComplet = ""
+         this.signupErreur = "Verifiez les champs"
+       }
       }
     }
       
   }
 
-    //function d'inscrioption
+    
 
   
 
@@ -42,25 +80,25 @@ export default {
     <h1 class="h3 mb-3 fw-normal">Enscrivez-vous</h1>
     <div>
       <div class="form-floating">
-        <input type="name" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <input type="name" class="form-control" value="signupFirstname" @input="signupFirstName = $event.target.value" id="floatingInput" placeholder="name@example.com">
         <label for="floatingInput">Firstname</label>
       </div>
       <div class="form-floating">
-        <input type="name" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <input type="name" class="form-control" value="signupLastname" @input="signupFirstName = $event.target.value" id="floatingInput" placeholder="name@example.com">
         <label for="floatingInput">Lastname</label>
       </div>
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <input type="email" class="form-control" value="signupEmail" @input="signupEmail = $event.target.value" id="floatingInput" placeholder="name@example.com">
         <label for="floatingInput">Email address</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control" value="signupPassword" @input="signupPassword = $event.target.value" id="floatingPassword" placeholder="Password">
         <label for="floatingPassword">Password</label>
       </div>
     </div>
 
     
-    <button class="w-100 btn-style  btn-lg   mb-4 d-block" type="submit">S'inscrire</button>
+    <button class="w-100 btn-style  btn-lg   mb-4 d-block" click="isSignup" type="submit">S'inscrire</button>
     
     <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
   </form>

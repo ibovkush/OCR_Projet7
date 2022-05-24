@@ -14,7 +14,7 @@ export default {
 
 <template>
 
-<!-- <Navbar /> -->
+
 <router-view></router-view>
 </template>
 
