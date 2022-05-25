@@ -9,6 +9,7 @@ import Navbar from '../components/layout/navbar.vue';
 
 data() {
           return {
+            api: import.meta.env.VUE_APP_API,
             accedAccount: false,
             sessionUserId: 0,
             sessionUserRole: 0,
@@ -17,7 +18,7 @@ data() {
         },
          created(){
         
-        this.connectedUser()
+        // this.connectedUser()
     },
     beforeMount() {
         // l'utilisateur ou administrateur

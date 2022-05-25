@@ -3,7 +3,7 @@ export default {
     name: "signup",
     data: function(){
       return {
-        api: Vue_API, 
+        api: import.meta.env.VUE_APP_API, 
         signupLastName:'',
         signupFirstName:'',
         signupEmail: '',

@@ -15,10 +15,11 @@ import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 
 
 const routes = [
+    { path: "/", component: login},
     { path: "/signup", component: signup},
     { path: "/wall", component: wall},
     { path: "/login", component: login},
-    { path: "/id:user", component: profil},
+    { path: "/profil/:id_user", component: profil},
     { path: "/updateProfil", component: updateProfil}
 
     
