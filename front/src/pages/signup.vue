@@ -9,7 +9,7 @@ export default {
         signupEmail: '',
         signupPassword: '',
         signupErreur: '',
-        signupComplet  
+        signupComplet: ''  
       }
     },
     methods: {
@@ -73,36 +73,35 @@ export default {
         </a>  
       </div>
     </div> 
+    <main class="form-signin">
+      <form>
+        <img class="mb-4 d-block mx-auto logo-style" src="../../public/icon-above-font.png" alt="Logo de Groupomania">
+        <h1 class="h3 mb-3 fw-normal">Enscrivez-vous</h1>
+        <div>
+          <div class="form-floating">
+            <input type="name" class="form-control" value="signupFirstname" @input="signupFirstName = $event.target.value" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Firstname</label>
+          </div>
+          <div class="form-floating">
+            <input type="name" class="form-control" value="signupLastname" @input="signupFirstName = $event.target.value" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Lastname</label>
+          </div>
+          <div class="form-floating">
+            <input type="email" class="form-control" value="signupEmail" @input="signupEmail = $event.target.value" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" value="signupPassword" @input="signupPassword = $event.target.value" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+        </div>
 
-<main class="form-signin">
-  <form>
-    <img class="mb-4 d-block mx-auto logo-style" src="../../public/icon-above-font.png" alt="Logo de Groupomania">
-    <h1 class="h3 mb-3 fw-normal">Enscrivez-vous</h1>
-    <div>
-      <div class="form-floating">
-        <input type="name" class="form-control" value="signupFirstname" @input="signupFirstName = $event.target.value" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Firstname</label>
-      </div>
-      <div class="form-floating">
-        <input type="name" class="form-control" value="signupLastname" @input="signupFirstName = $event.target.value" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Lastname</label>
-      </div>
-      <div class="form-floating">
-        <input type="email" class="form-control" value="signupEmail" @input="signupEmail = $event.target.value" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
-      </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" value="signupPassword" @input="signupPassword = $event.target.value" id="floatingPassword" placeholder="Password">
-        <label for="floatingPassword">Password</label>
-      </div>
-    </div>
-
-    
-    <button class="w-100 btn-style  btn-lg   mb-4 d-block" click="isSignup" type="submit">S'inscrire</button>
-    
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
-  </form>
-</main>
+        
+        <button class="w-100 btn-style  btn-lg   mb-4 d-block" click="isSignup" type="submit">S'inscrire</button>
+        
+        <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+      </form>
+    </main>
 </template>
 <style scoped>
 .logo-style{
